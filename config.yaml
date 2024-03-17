@@ -1,0 +1,60 @@
+baseURL: http://wormholerelays.com/
+languageCode: en-us
+title: WormholeRelays
+theme: PaperMod
+paginate: 6
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+menu:
+  main:
+    - name: Search
+      url: search/
+      weight: 10
+    - name: Tags
+      url: tags/
+      weight: 10
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # is necessary
+
+params:
+  author: Talha Altinel
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  hideFooter: true
+
+  homeInfoParams:
+    Title: Hello there! 🐧🐧🐧
+    Content: "Welcome to WormholeRelays, this is mrwormhole's blog about software engineering 🌌"
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/mrwormhole"
+    - name: gitlab
+      url: "https://gitlab.com/mrwormhole"
+    - name: linkedin
+      url: "https://linkedin.com/in/talha-altinel"
+    - name: dev
+      url: "https://dev.to/mrwormhole"
+    - name: email
+      url: "mailto:talhaaltinel@hotmail.com"
+
+  # for search, https://fusejs.io/api/options.html
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 2
+    keys: ["title", "permalink", "summary", "content"]
