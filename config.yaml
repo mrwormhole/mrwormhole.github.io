@@ -26,7 +26,7 @@ outputs:
 params:
   author: Talha Altinel
   ShowReadingTime: true
-  ShowShareButtons: true
+  ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
@@ -40,8 +40,6 @@ params:
   socialIcons:
     - name: github
       url: "https://github.com/mrwormhole"
-    - name: gitlab
-      url: "https://gitlab.com/mrwormhole"
     - name: linkedin
       url: "https://linkedin.com/in/talha-altinel"
     - name: dev
