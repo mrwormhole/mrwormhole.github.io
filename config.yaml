@@ -42,8 +42,6 @@ params:
       url: "https://github.com/mrwormhole"
     - name: linkedin
       url: "https://linkedin.com/in/talha-altinel"
-    - name: dev
-      url: "https://dev.to/mrwormhole"
     - name: email
       url: "mailto:talhaaltinel@hotmail.com"
 
