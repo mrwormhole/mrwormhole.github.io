@@ -13,6 +13,9 @@ menu:
     - name: Search
       url: search/
       weight: 10
+    - name: Archive
+      url: archive/
+      weight: 10
     - name: Tags
       url: tags/
       weight: 10
