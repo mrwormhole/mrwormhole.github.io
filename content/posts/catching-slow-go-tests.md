@@ -1,6 +1,6 @@
 ---
 title: "Catching Slow Go Tests"
-date: 2024-11-03T00:00:00+00:00
+date: 2024-11-08T00:00:00+00:00
 author: Talha Altinel
 description: "Practical way of catching slow tests"
 tags:
