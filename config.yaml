@@ -45,6 +45,8 @@ params:
       url: "https://github.com/mrwormhole"
     - name: linkedin
       url: "https://linkedin.com/in/talha-altinel"
+    - name: cv
+      url: "https://app.flowcv.com/api/public/download_resume?token=wqbisuaju8"
     - name: email
       url: "mailto:talhaaltinel@hotmail.com"
 
