@@ -56,8 +56,6 @@ if you fancy the flags, here they are;
 Usage of laverna:
   -file string
         filename path that is used for reading YAML file
-  -n int
-        generation number that is used in output filenames (default 1)
   -workers int
         maximum number of concurrent downloads (default 20)
 ```
