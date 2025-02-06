@@ -2,7 +2,8 @@ baseURL: http://wormholerelays.com/
 languageCode: en-us
 title: WormholeRelays
 theme: PaperMod
-paginate: 6
+pagination:
+  pagerSize: 5
 
 minify:
   disableXML: true
