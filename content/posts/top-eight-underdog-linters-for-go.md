@@ -202,8 +202,8 @@ Ever used something such as 200 or "POST" but forgot that these exist in standar
 # .golangci.yaml
 linters-settings:
   usetesting:
-    os-create-temp: false # Enable/disable `os.CreateTemp("", ...)` detections.
-    os-mkdir-temp: false # Enable/disable `os.MkdirTemp()` detections
+    os-create-temp: true # Enable/disable `os.CreateTemp("", ...)` detections.
+    os-mkdir-temp: true # Enable/disable `os.MkdirTemp()` detections
     os-setenv: true # Enable/disable `os.Setenv()` detections.
     os-temp-dir: true # Enable/disable `os.TempDir()` detections.
     os-chdir: true # Enable/disable `os.Chdir()` detections. Disabled if Go < 1.24.
@@ -281,7 +281,7 @@ func (q *Queries) ListHighscores(ctx context.Context) ([]Highscore, error) {
 /home/mrwormhole/Desktop/Hobby/highscore-api/repository/queries.sql.go:92:12: error returned from external package is unwrapped: sig: func (*database/sql.Row).Scan(dest ...any) error
 ```
 
-[Wrapcheck](https://github.com/tomarrell/wrapcheck) as the name suggests enforce you to wrap errors with useful information. It doesn't check `%v` vs `%w`, it only checks you don't do `if err != nil { return err }`, I actually quite like this error because [google styling guide](https://google.github.io/styleguide/go/best-practices#adding-information-to-errors) enforces us to decorate the error with what's being called such as `fmt.Errorf("something.Do(): %v", err)`
+[Wrapcheck](https://github.com/tomarrell/wrapcheck) as the name suggests enforce you to wrap errors with useful information. It doesn't check `%v` vs `%w`, it only checks you don't do `if err != nil { return err }`, I actually quite like this linter because [google styling guide](https://google.github.io/styleguide/go/best-practices#adding-information-to-errors) enforces us to decorate the error with what's being called such as `fmt.Errorf("something.Do(): %v", err)`
 
 One fun fact, sqlc generated code suffers from this dizziness a lot 😄 next time you are thinking about code generation, I suggest you think at least 10 more times.
 
