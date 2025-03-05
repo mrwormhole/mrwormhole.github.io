@@ -25,7 +25,7 @@ I see the great negligence from very senior developers when they hear "SQL" and 
 
 First of all, we need to talk about what makes a language a programming language. It is actually very simple, "Turing completeness" is what makes a language a programming language. But what is "Turing completeness"? I am glad you asked, short answer is you need to understand "Turing machines" before we talk about "Turing completeness". What is a "Turing machine"?
 
-Turing machine is a theoretical device that was invented by Alan Turing (check on your £50 bank note bills, he is right there!) in order to understand computation. Turing machine has 
+Turing machine is a theoretical device that was invented by Alan Turing (check on your £50 bank note bills, he is right there!) in order to understand computation. Turing machine has:
 - Long tape divided into cells (think as an infinite long strip of paper)
 - A head that can read symbols from long tape then write new symbols then move left/right or stand still
 - The machine state (think possible "modes" that machine can be in)
@@ -196,7 +196,7 @@ Our algoritm for running machine is relatively simple.
 - In the loop, record the machine step byproducts
 - After loop ends, if steps has reached max steps and not halted, set last machine step with timeout state and halted status as halted
 
-Fun fact, max steps is defined in our program to overcome most famous theoritical problem in computer sciences (aka Halting problem). The Halting Problem asks whether there exists a general algorithm that can determine, for any arbitrary program and input, whether that program will eventually halt (terminate) or run forever. Turing proved that no such algorithm can exist - it's mathematically impossible to create a procedure that can always correctly predict whether an arbitrary program will halt.
+> Fun fact, max steps is defined in our program to overcome most famous theoritical problem in computer science (aka Halting problem). The Halting Problem asks whether there exists a general algorithm that can determine, for any arbitrary program and input, whether that program will eventually halt or run forever. Turing proved that no such algorithm can exist - it's mathematically impossible to create a procedure that can always correctly predict whether an arbitrary program will halt.
 
 ```sql
 -- run_machine runs machine
@@ -283,23 +283,7 @@ stateDiagram-v2
     no --> [*]: Rejected
 ```
 
-Walking through the example with the string "101":
-
-| Step | State | Position | Read | Action                | New State | Tape  | New Position |
-|------|-------|----------|------|-----------------------|-----------|-------|--------------|
-| 1    | q0    | 1        | `1`  | Write `_`, Move Right | q2        | `_01` | 2            |
-| 2    | q2    | 2        | `0`  | Write `0`, Move Right | q2        | `_01` | 3            |
-| 3    | q2    | 3        | `1`  | Write `1`, Move Right | q2        | `_01` | 4            |
-| 4    | q2    | 4        | `_`  | Write `_`, Move Left  | q4        | `_01` | 3            |
-| 5    | q4    | 3        | `1`  | Write `_`, Move Left  | q5        | `0`   | 2            |
-| 6    | q5    | 2        | `0`  | Write `0`, Move Left  | q5        | `0`   | 1            |
-| 7    | q5    | 1        | `_`  | Write `_`, Move Right | q0        | `0`   | 2            |
-| 8    | q0    | 2        | `0`  | Write `_`, Move Right | q1        | `___` | 3            |
-| 9    | q1    | 3        | `_`  | Write `_`, Move Left  | q3        | `___` | 2            |
-| 10   | q3    | 2        | `_`  | Write `_`, Stay       | yes       | `___` | 2            |
-
-
-At yes state - The machine halts and accepts the string. Below is the palindrome program in SQL procedure which uses turing machine to solve the palindrome problem.
+Since we have our transition rules (state diagram above), we can write our procedure.  Below is the palindrome program in SQL procedure which uses Turing machine to solve the palindrome problem.
 
 ```sql
 -- run_palindrome_program runs the palindrome program in Turing machine
@@ -343,6 +327,10 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 ```
+
+Walking through the example with the string "101":
+
+At yes state - The machine halts and accepts the string.
 
 ```shell
 turing_machine=# call run_palindrome_program('101');
@@ -398,6 +386,6 @@ turing_machine=# select * FROM machine_steps;
 
 ## Final Words
 
-Since we proved SQL is indeed a programming language, I want to stress a final point. We have utilized "pl/pgsql" which is the procedural language of PostgreSQL. During ANSI-SQL(SQL-86/SQL-89), SQL was not turing complete at that time because it lacked recursive structures such as loops. SQL-99 added "WITH RECURSIVE" to do while loops and procedural elements(WHEN/CASE etc). In today's world, every production database is minimum SQL-99 compliant. Even sqlite's SQL dialect is turing complete.
+Since we proved SQL is indeed a programming language, I want to stress a final point. We have utilized "pl/pgsql" which is the procedural language of PostgreSQL. During ANSI-SQL (SQL-86/SQL-89), SQL was not turing complete at that time because it lacked recursive structures such as loops. SQL-99 added "WITH RECURSIVE" to do while loops and procedural elements(WHEN/CASE etc). In today's world, every production database is minimum SQL-99 compliant. Even sqlite's SQL dialect is turing complete.
 
-Lastly, even if we lived before 1999, entire world's data is running since 1986. Why would people take pride of learning ORM abstractions rather than learning fundamentals of existing databases. And ORM abstractions will surely change more often and not provide the full feature sets of what you can achieve. It is just wishful thinking to ignore SQL and treat it like a chore.
+Lastly, even if we lived before 1999, entire world's data is running since 1986. Why would people take pride of learning ORM abstractions rather than learning fundamentals of existing databases. And ORM abstractions will surely change more often and not provide the full feature sets of what you can achieve. It is just wishful thinking to ignore SQL and treat it as a chore rather than a powerful tool.
