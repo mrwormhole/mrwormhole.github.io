@@ -1,6 +1,6 @@
 ---
 title: "SQL: Turing Completeness"
-date: 2025-03-05T00:00:00+00:00
+date: 2025-03-08T00:00:00+00:00
 author: Talha Altinel
 description: "Let's make a Turing Machine Simulation in SQL"
 tags:
