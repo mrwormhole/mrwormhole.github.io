@@ -21,7 +21,7 @@ cover:
 ---
 
 So I have been dying to write this blog post for a while, I feel great that I had some time to focus on this topic. Initially my primary reason to write this post is
-I see the great negligence from very senior developers when they hear "SQL" and I came across a few very senior interviewers who said "SQL is not even programming language, we use ORMs, why bother learning something that is not even a programming language(they mean SQL)" so the main purpose of this post is to shed some light over ignorance/incompetence with the proof of "SQL indeed is really a programming language" and why you must learn and practice it just like other programming languages.
+I see the great negligence from very senior developers when they hear "SQL" and I came across a few very senior interviewers who said "SQL is not even programming language, we use ORMs, why bother learning something that is not even a programming language(they mean SQL)" so the main purpose of this post is to shed some light over ignorance/incompetence with the proof of "SQL indeed is a programming language" and why you must learn and practice it just like other programming languages.
 
 First of all, we need to talk about what makes a language a programming language. It is actually very simple, "Turing completeness" is what makes a language a programming language. But what is "Turing completeness"? I am glad you asked, short answer is you need to understand "Turing machines" before we talk about "Turing completeness". What is a "Turing machine"?
 
@@ -37,7 +37,7 @@ So if I write how to solve a niche problem with Turing machine simulation in SQL
 
 ## Turing Machine Simulation in SQL
 
-First of we are going to need our machine. And machine needs to have initial state, accept state and reject state and blank symbol and max steps to halt.
+First of all, we are going to need our machine. And machine needs to have initial state, accept state, reject state, blank symbol and max steps to halt. Accept state means a positive outcome that leads to halt. Reject state means a negative outcome that leads to halt. The word symbol means what symbol is located at the each cell of the tape.
 
 ```sql
 CREATE TABLE machine (
@@ -49,7 +49,7 @@ CREATE TABLE machine (
 );
 ```
 
-Secondly we need to know transition rules which is the state diagram for any sort of Turing machine.
+Secondly we need to know transition rules which is the state diagram for any sort of Turing machine. Before we switch from state to new_state, we must read from the tape(read_symbol), we must write to the tape(write_symbol) then finally we can act on the direction whether it is left/right or none.
 
 ```sql
 CREATE TABLE transition_rules (
@@ -95,19 +95,19 @@ $$ LANGUAGE plpgsql;
 
 In Turing machines, the standard convention is that the head reads the current symbol, then writes a new symbol, and finally moves. This is known as the "read-write-move" sequence for each step of the computation.
 
-Now we will define a function for running steps(iterations) that follows "read-write-move" algoritm, to be able to understand arguments and parameters. I will explain the logic flow.
+Now we will define a function for running steps(iterations) that follows "read-write-move" algoritm, to be able to understand arguments and return parameters. I will explain the logic flow.
 
 - Take current state, accept state and reject state
 - If current state is accept state or reject state, we return current state and halt
-- Take the tape(it is long text), take the position
-- We use pos to determine if we are inside of the tape, we take read the symbol from the tape. If outside of tape, we read the symbol as blank. Remember string indices start from 1 in SQL
-- Query transition rule that matches our current_state and read symbol from tape
+- Take the tape(it is long text), take the position of the tape
+- We use pos to determine if we are inside of the tape, we take read the symbol from the tape. If outside of tape, we read the symbol as blank so we need to know what blank symbol is. Remember string indices start from 1 in SQL
+- Query existing transition rule that matches our current state and read symbol from tape
 - If transition rule is not found, return halted as true
-- Write the new symbol(indicated from transition rule) to the tape
-- Increment or decrement the position according to move direction(indicated from transition rule)
-- Finally, return new state and the modified tape and new position and halted status
+- Write the new symbol, which is indicated in the transition rule, to the tape
+- Increment or decrement the position according to move direction (which is also indicated in the transition rule)
+- Finally, return new state, the modified tape, the new position and the halted status
 
-The reason why we use a function over procedure is obvious one, we need to return halted status and others since they will be used in a loop to determine the halting point.
+The reason why we use a function over procedure is obvious one, we need to return halted status and other return parameters since they will be used in a loop to determine the halting point.
 
 ```sql
 -- run_step executes a single step of machine
@@ -245,9 +245,9 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-With this our Turing Machine is complete!!! now how do we actually run it? well, you sort of need a state diagram that solves a problem! In the end, if you don't have a problem, why do you need a machine??
+With this our Turing Machine is complete!!! now how do we actually run it? well, you sort of need a state diagram that solves a problem! In the end, if you don't have a problem, why do you need a machine at the first place?
 
-I have come up with a palindrome recognizer state diagram below, let me explain briefly.
+I have come up with a palindrome recognizer state diagram below, let me explain briefly. It looks a bit complicated at the beginning but when you do the napkin calculation on a given basic input, it makes so much sense.
 
 ![Palindrome-Turing-Machine](/turing-machine-palindrome.png)
 
@@ -379,8 +379,10 @@ turing_machine=# select * FROM machine_steps;
    16 | yes   | _____ |        3 | t
 ```
 
+You may think that it is not efficient at all, but I want to remind you that this was the fundamental idea to the whole computing paradigm. We are not focusing so much on efficiency here since everything is tied to a single while tight loop like in videogames. What matters here is if you can replicate the algorithm and write it in a claimed language. It means that claimed language is indeed a programming language.
+
 ## Final Words
 
-Since we proved SQL is indeed a programming language, I want to stress a final point. We have utilized "pl/pgsql" which is the procedural language of PostgreSQL. During ANSI-SQL (SQL-86/SQL-89), SQL was not turing complete at that time because it lacked recursive structures such as loops. SQL-99 added "WITH RECURSIVE" to do while loops and procedural elements(WHEN/CASE etc). In today's world, every production database is minimum SQL-99 compliant. Even sqlite's SQL dialect is turing complete.
+Since we proved SQL is indeed a programming language, I want to stress a final point. We have utilized "pl/pgsql" which is the procedural language of PostgreSQL. During ANSI-SQL (SQL-86/SQL-89), SQL was not turing complete at that time because it lacked recursive structures such as loops. SQL-99 added "WITH RECURSIVE" to do while loops and procedural elements(WHEN/CASE etc). In today's world, every production database is minimum SQL-99 compliant which makes them a valid programming language. For example, even sqlite's SQL dialect is turing complete.
 
-Lastly, even if we lived before 1999, entire world's data is running since 1986. Why would people take pride of learning ORM abstractions rather than learning fundamentals of existing databases. And ORM abstractions will surely change more often and not provide the full feature sets of what you can achieve. It is just wishful thinking to ignore SQL and treat it as a chore rather than a powerful tool.
+Lastly, even if we lived before 1999 and no SQL-99 exited, entire world's data would be running on SQL since 1986. Why would people take pride of learning ORM abstractions rather than learning fundamentals of existing databases. And ORM abstractions will surely change more often and not provide the full feature sets of what you can achieve. It is just wishful thinking to ignore SQL and treat it as a chore rather than a powerful tool.
