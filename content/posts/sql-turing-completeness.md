@@ -383,6 +383,6 @@ You may think that it is not efficient at all, but I want to remind you that thi
 
 ## Final Words
 
-I want to stress a final point. We have utilized "pl/pgsql" which is the procedural language of PostgreSQL. During ANSI-SQL (SQL-86/SQL-89), SQL was not turing complete at that time because it lacked recursive structures such as loops. SQL-99 added "WITH RECURSIVE" to do while loops and procedural elements(WHEN/CASE etc). In today's world, every production database is minimum SQL-99 compliant which makes them a valid programming language. For example, even sqlite's SQL dialect is turing complete.
+I want to stress a final point. We have utilized "pl/pgsql" which is the procedural language of PostgreSQL. During ANSI-SQL (SQL-86/SQL-89), SQL was not turing complete at that time because it lacked recursive structures such as loops. SQL-99 added "WITH RECURSIVE" to do while loops and procedural elements (WHEN/CASE etc). In today's world, every production database is minimum SQL-99 compliant which makes them a valid programming language. For example, even sqlite's SQL dialect is turing complete.
 
 Lastly, even if we lived before 1999 and no SQL-99 existed, entire world's data would be running on SQL since 1986. Why would people take pride of learning ORM abstractions rather than learning fundamentals of existing databases. And ORM abstractions will surely change more often and not provide the full feature sets of what you can achieve. It is just wishful thinking to ignore SQL and treat it as a chore rather than a powerful tool.
