@@ -39,7 +39,7 @@ Pauron is meant to be run on github actions, but you can do a cron job on anywhe
 To try it out, you can fork my repository and adjust your github actions along with `AUR_SSH_KEY` secret if you have AUR account or interested in AUR package maintenance.
 
 ```yaml
-name: Update k3sup AUR package
+name: Update AUR packages
 
 on:
   # Manual trigger
