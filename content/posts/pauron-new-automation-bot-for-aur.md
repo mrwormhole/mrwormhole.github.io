@@ -141,5 +141,5 @@ To ssh://aur.archlinux.org/k3sup.git
 INFO: Successfully committed and pushed 0.13.9
 ```
 
-Quick note: the upstream source URL needs to be GitHub since I use GitHub API to determine latest release versions but feel free to PR or make an issue about any other version control system
-if you think it is useful to have! 
+Quick note: the upstream source URL needs to be GitHub since I use GitHub API to determine latest release versions but feel free to PR or make an issue about any other version control systems such as GitLab
+if you think it is useful to have! One thing that pops to my mind is publishing it to PyPI as standalone CLI and making it runnable with `pipx` for easier usage across other CI/CDs.
