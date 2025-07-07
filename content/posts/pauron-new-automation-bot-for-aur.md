@@ -75,6 +75,12 @@ jobs:
           python main.py -p k3sup
 ```
 
+Or you can simply use [Pauron PyPI package](https://pypi.org/project/pauron/) with `pipx` which is the "RECOMMENDED" way.
+
+```sh
+AUR_SSH_KEY="$(cat ~/.ssh/pauron)" pipx run pauron -p k3sup
+```
+
 The normal output if your package is up to date will look like below:
 
 ```
@@ -142,4 +148,4 @@ INFO: Successfully committed and pushed 0.13.9
 ```
 
 Quick note: the upstream source URL needs to be GitHub since I use GitHub API to determine latest release versions but feel free to PR or make an issue about any other version control systems such as GitLab
-if you think it is useful to have! One thing that pops to my mind is publishing it to PyPI as standalone CLI and making it runnable with `pipx` for easier usage across other CI/CDs.
+if you think it is useful to have!
