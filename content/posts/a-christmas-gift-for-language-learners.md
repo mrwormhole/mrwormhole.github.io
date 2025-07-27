@@ -19,7 +19,7 @@ cover:
   alt: laverna-image
 ---
 
-In this post, I announce my newest tool for language learners. As long as I am learning a new language, I plan to maintain it under my voluntary github org called [Lingua Sensei](https://github.com/lingua-sensei).
+In this post, I announce my newest tool for language learners. As long as I am learning a new language, I plan to maintain it.
 
 ## What is Laverna? What does it solve?
 
@@ -27,8 +27,8 @@ Laverna is a sleek command-line tool that transforms text into spoken audio. All
 
 ## Getting Started
 
-If you're a Go user, simply run `go install github.com/lingua-sensei/laverna@latest`
-Not a Go developer? No problem! You can download ready-to-use binaries directly from [releases](https://github.com/lingua-sensei/laverna/releases/tag/v0.0.1-rc).
+If you're a Go user, simply run `go install github.com/mrwormhole/laverna@latest`
+Not a Go developer? No problem! You can download ready-to-use binaries directly from [releases](https://github.com/mrwormhole/laverna/releases/tag/v0.0.5).
 
 After you have installed, simply create a YAML file such as example.yaml
 
@@ -60,6 +60,6 @@ Usage of laverna:
         maximum number of concurrent downloads (default 20)
 ```
 
-Want to give Laverna a try this holiday season? Head over to [Laverna GitHub Repository](https://github.com/lingua-sensei/laverna) and you can start creating your personalized language learning audio. Happy Holidays and happy learning! 🎄🎧✨
+Want to give Laverna a try this holiday season? Head over to [Laverna GitHub Repository](https://github.com/mrwormhole/laverna) and you can start creating your personalized language learning audio. Happy Holidays and happy learning! 🎄🎧✨
 
 Found a bug? Spotted an issue? Have a brilliant idea to share? Don't hesitate to give me a nudge! 
