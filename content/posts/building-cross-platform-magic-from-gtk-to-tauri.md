@@ -49,14 +49,18 @@ pnpm install
 pnpm tauri build
 ```
 
-Or I recommend that you download ready-to-use binaries directly from [releases](https://github.com/mrwormhole/keyboard-app/releases).
+Or I **strongly** recommend to download Tauri-made binaries directly from [releases](https://github.com/mrwormhole/keyboard-app/releases).
 
-Arch Linux users get special treatment - there's an [AUR package](https://aur.archlinux.org/packages/keyboard-app) waiting for you. Please upvote it! ;)
+Arch Linux users get special treatment, there's an [AUR package](https://aur.archlinux.org/packages/keyboard-app) waiting for you. Please upvote it! ;)
 
 
 ## Final Words
 
-July 29th marked the Thai Language Day (วันภาษาไทย), Happy Thai Language Day! (สุขสันต์วันภาษาไทย)
+สุขสันต์วันภาษาไทย
+
+July 29th marked the Thai Language Day, Happy Thai Language Day! 
+
+
 
 Projects like this play a small role in supporting linguistic diversity by removing barriers to digital communication. Every language deserves easy access in our modern computing environments.
 
