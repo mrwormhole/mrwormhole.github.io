@@ -42,7 +42,7 @@ Having worked with Python GTK bindings before, the difference is night and day. 
 
 ## Getting Started
 
-If you can simply clone and build:
+You can build locally:
 ```bash
 git clone https://github.com/mrwormhole/keyboard-app
 pnpm install
