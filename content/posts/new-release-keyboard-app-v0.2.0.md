@@ -16,11 +16,11 @@ ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 draft: false
 cover:
-  image: dlehn34ldlakiwtbx.webp
+  image: keyboard-app-logo.png
   alt: thai-language
 ---
 
-In this post, I will be announcing new features and existing struggles of my keyboard app.
+In this post, I will be announcing the new features and the existing struggles of my keyboard app.
 
 ## The Recap
 
