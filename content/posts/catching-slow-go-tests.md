@@ -15,8 +15,8 @@ ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 draft: false
 cover:
-  image: 0ujssxh0cECutqzMgbtXSG.webp
-  alt: brown-gopher-background
+  image: qwelksdfkalf.webp
+  alt: turtle-slow-performance
 ---
 
 ## The Problem
