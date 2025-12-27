@@ -68,7 +68,7 @@ thread = threading.Thread(target=start_server, daemon=True)
 thread.start()
 ```
 
-The issue: Anki's SQLite database connection isn't thread-safe. The collection object (`mw.col`) can only be accessed from Qt's main thread. The [documentation mentions this](https://addon-docs.ankiweb.net/background-ops.html).
+The issue: Anki's SQLite driver connection isn't thread-safe. The collection object (`mw.col`) can only be accessed from Qt's main thread. The [documentation mentions this](https://addon-docs.ankiweb.net/background-ops.html). Additionally, `__init__.py` can not block so we run HTTP server in deamon mode :)
 
 ## The Solution
 
