@@ -141,7 +141,7 @@ This pattern might not be "Pythonic," but it simplified everything beautifully.
 After the PoC worked, I implemented the complete solution ([see PR](https://github.com/mrwormhole/laverna/pull/20/files#diff-785d7aa4d535d30185b30a6e7e86268639f3e01dd38185b84b6023f3dd21a151)):
 
 1. Validate the incoming request
-2. Perform Anki validations—create note type if missing, create deck if missing
+2. Perform Anki validations: create note type if missing, create deck if missing
 3. Read CSV and import via Anki functions (mostly protobuf types)
 4. Update Laverna CLI to POST directly to the addon's endpoint instead of writing files
 5. Add flags and configuration options
