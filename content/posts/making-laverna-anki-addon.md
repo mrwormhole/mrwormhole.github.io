@@ -43,6 +43,8 @@ The constraint was clear: I had to use [Anki's bundled Python dependencies](http
 
 Fortunately, `flask`, `waitress`, `request`, and `jsonschema` were already available in Anki's dependencies. I chose Flask (for HTTP abstractions) and Waitress (for the WSGI server) since I needed an endpoint to receive enriched CSV data and trigger Anki's import functionality.
 
+One another constraint was we could only run the addon code after Anki application started running. This meant that development workflow would need some sort of copy/paste or symlinking workflow which was not pretty but doable. Basically Anki addons were zipped `__init__.py` files which relied on Anki library and its dependencies and rarely vendored addon dependencies with no solid dependency hashes.
+
 ## The Problem
 
 Everything seemed fine until I hit an SQLite error:
