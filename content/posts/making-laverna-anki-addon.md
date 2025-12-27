@@ -31,7 +31,7 @@ Three months ago, I built an integration between Laverna CLI and Anki with this 
 3. User runs Laverna CLI, which outputs enriched CSV
 4. User manually imports the CSV via Anki's deck import tab
 
-Everything looked normal on the surface, but steps 1 and 4 were cumbersome and repetitive. Since Anki doesn't provide an official SDK or REST API, I needed to find another approach.
+Everything looked normal on the surface, but steps 1 and 4 were cumbersome and repetitive. Since Anki doesn't provide an official SDK or REST API, I needed to find another approach. Step 1 and 4 were also more error prone since it contained my internal app logic.
 
 ## Discovery
 
@@ -74,7 +74,7 @@ The issue: Anki's SQLite database connection isn't thread-safe. The collection o
 
 The solution was to use `mw.taskman.run_on_main()` to run queries on the main thread. But how do I collect the result and return it to my HTTP handler?
 
-Enter Python's `Future` a concept I'd avoided for years:
+Check out Python's `Future` a concept:
 
 ```python
 from concurrent.futures import Future
@@ -100,7 +100,7 @@ def hello():
     return jsonify({'message': 'hello', 'notes': note_count}), 200
 ```
 
-This blocks until `future.result()` returns and handles exceptions properly.
+This blocks until `future.result()` returns and handles exceptions.
 
 ## Simplifying Further
 
