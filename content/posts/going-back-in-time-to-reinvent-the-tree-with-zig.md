@@ -33,7 +33,7 @@ Before diving into the build system, I needed to understand what I was inheritin
 
 **tree.lsm**: A Linux Software Map file from the 1990s. Between 1994-2000, developers manually uploaded these metadata files to curated databases hosted on static web pages. The LSM project shut down in the early 2000s. This file served no purpose in 2026.
 
-**tree.1**: A man page written in groff syntax, cryptic to read and edit. I eventually embedded this directly into the binary so users can run `bo --man` without needing the system `man` command installed.
+**tree.1**: A man page written in groff syntax, cryptic to read and edit. I eventually embedded this directly into the binary so users can run `bo man` without needing the system `man` command installed.
 
 **Makefile**: Surprisingly readable until I noticed the platform targets: HP/UX, HP NonStop, and OS/2. The first two are proprietary HP systems that never ran open source software anyway. OS/2 was IBM's post-DOS operating system, long extinct, but it had infected the codebase with `__EMX__` preprocessor blocks throughout the C files.
 
@@ -175,7 +175,7 @@ fn makeRunStep(b: *std.Build, exe: *std.Build.Step.Compile) void {
 
 **Cross-compilation without pain**: Want a macOS ARM binary? `zig build -Dtarget=aarch64-macos`. Linux on ARM? `zig build -Dtarget=aarch64-linux-gnu`. No need to install cross-toolchains or configure separate build environments. It is much easier to produce binaries from 1 Linux machine for all major platforms.
 
-**Embedded man page**: I added Python scripts to convert the original man page into a Zig string constant. Now `bo --man` displays help without requiring the system `man` command. This is particularly useful in minimal environments like containers.
+**Embedded man page**: I added Python scripts to convert the original man page into a Zig string constant. Now `bo man` displays help without requiring the system `man` command. This is particularly useful in minimal environments like containers.
 
 **One build system for them all**: The original Makefile had platform-specific rules for HP/UX, Solaris, and others. Now `build.zig` handles everything declaratively based on the target triple.
 
